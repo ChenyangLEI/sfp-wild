@@ -13,14 +13,12 @@ We present a new data-driven approach with physics-based priors to scene-level n
 ## Citation
 If you find this work useful for your research, please cite:
 ```
-@misc{lei2021shape,
-      title={Shape from Polarization for Complex Scenes in the Wild}, 
-      author={Chenyang Lei and Chenyang Qi and Jiaxin Xie and Na Fan and Vladlen Koltun and Qifeng Chen},
-      year={2021},
-      eprint={2112.11377},
-      archivePrefix={arXiv},
-      primaryClass={cs.CV}
-}                  
+@article{lei2021shape,
+    title={Shape from Polarization for Complex Scenes in the Wild}, 
+    author={Chenyang Lei and Chenyang Qi and Jiaxin Xie and Na Fan and Vladlen Koltun and Qifeng Chen},
+    year={2021},
+    journal={arXiv: 2112.11377},
+}
 ```
 
 ## Contact
