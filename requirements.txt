@@ -1,0 +1,5 @@
+# torch 1.7.0
+opencv-contrib-python
+tensorboardX
+tqdm
+imageio
