@@ -22,7 +22,7 @@ bash download.sh
 After running the script, 35GB .zip file should be downloaded.
 Keep the folder structure as
 ```
---polar3d
+--sfp-wild
  |--configs
  |--data
    |--cvpr2022_camera_ready
@@ -35,7 +35,7 @@ Keep the folder structure as
 ## Train, test and evaluation
 
 ```
-bash reproduce_full_model.sh
+bash configs/reproduce_full_model.sh
 ```
 
 ## Introduction
