@@ -37,7 +37,13 @@ Keep the folder structure as
 ```
 bash configs/reproduce_full_model.sh
 ```
-
+### Pretrained checkpoint
+You may also download the pretrainck checkpoint from 
+<https://hkustconnect-my.sharepoint.com/:u:/g/personal/cqiaa_connect_ust_hk/EVo8OLJq0mRHtZoPXyUe8Q8BOawJF-EnvRDM3iG-ay7suw?e=99EyI4>.
+Edit the path in "configs/reproduce_full_model_infer.sh" and run the command to produce the result in the paper
+```
+bash configs/reproduce_full_model_infer.sh
+```
 ## Introduction
 
 We present a new data-driven approach with physics-based priors to scene-level normal estimation from a single polarization image. Existing shape from polarization (SfP) works mainly focus on estimating the normal of a single object rather than complex scenes in the wild. A key barrier to high-quality scene-level SfP is the lack of real-world SfP data in complex scenes. Hence, we contribute the first real-world scene-level SfP dataset with paired input polarization images and ground-truth normal maps. Then we propose a learning-based framework with a multi-head self-attention module and viewing encoding, which is designed to handle increasing polarization ambiguities caused by complex materials and non-orthographic projection in scene-level SfP. Our trained model can be generalized to far-feld outdoor scenes as the relationship between polarized light and surface normals is not affected by distance. Experimental results demonstrate that our approach significantly outperforms existing SfP models on two datasets.
