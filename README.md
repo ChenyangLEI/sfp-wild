@@ -1,5 +1,5 @@
 # sfp-wild
-Implementation for Shape from Polarization for Complex Scenes in the Wild (CVPR 2022)
+Implementation for Blind Deflickering for Video Capturing, Processing, and Generation by Neural Filtering with a Flawed Atlas
 
 [project website](https://chenyanglei.github.io/sfpwild/index.html) | [paper](https://arxiv.org/pdf/2112.11377.pdf)
 
