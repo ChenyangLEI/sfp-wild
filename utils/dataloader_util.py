@@ -5,18 +5,40 @@ from glob import glob
 import torch
 from tqdm import tqdm
 
-def get_coordinate(depth, viewing_dir=False):
+def get_coordinate(depth, viewing_dir=False, intrinsic=None):
     # h * w 
     h, w = depth.shape[:2]
     u = (np.tile(np.arange(w),[h,1]) - w * 0.5)/ (0.5 * w)
     v = (np.tile(np.arange(h)[...,None],[1,w]) - 0.5 * h) / (0.5 * h)
     coordinate = np.concatenate([u[...,None],v[...,None], 1. * np.ones([h,w,1])],axis=2)
     if viewing_dir:
-        coordinate = np.load("./utils/vd_local.npy")
+        if intrinsic is not None:
+            coordinate = get_vd(intrinsic=intrinsic, hw=(h, w))[0]
+        else:
+            coordinate = np.load("./utils/vd_local.npy")
     return coordinate[None,...]
 
-def get_vd(path="./utils/vd_local.npy"):
-    return np.load(path)[None, ...]
+def get_vd(path="./utils/vd_local.npy", intrinsic=None, hw=None):
+    """Compute the viewing direction.
+
+    If ``intrinsic`` (fx, fy, cx, cy) and ``hw`` (h, w) are given, the
+    viewing direction of each pixel is computed from the camera intrinsic
+    parameters as ``((u - cx) / fx, (v - cy) / fy, 1)`` and normalised to
+    unit length, as described in the paper. Otherwise the pre-computed
+    array stored at ``path`` is loaded; that array is the 2D pixel
+    coordinate (u, v) normalised to [-1, 1].
+    """
+    if intrinsic is not None and hw is not None:
+        h, w = hw
+        fx, fy, cx, cy = intrinsic
+        u = np.tile(np.arange(w), [h, 1]).astype(np.float32)
+        v = np.tile(np.arange(h)[:, None], [1, w]).astype(np.float32)
+        vd = np.stack([(u - cx) / fx, (v - cy) / fy,
+                       np.ones((h, w), dtype=np.float32)], axis=-1)
+        vd = vd / (np.linalg.norm(vd, axis=-1, keepdims=True) + 1e-10)
+    else:
+        vd = np.load(path)
+    return vd[None, ...]
     
     # interpolated_normal, use_sfpwild, use_deepsfp
 
